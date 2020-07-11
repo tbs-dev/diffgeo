@@ -1,0 +1,57 @@
+%Headerfile
+\ProvidesPackage{header-commands}[2019/10/07]
+\ProcessOptions\relax
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{framed}
+\RequirePackage{tikz}
+\RequirePackage{makeidx}
+\RequirePackage{xcolor}
+\RequirePackage{xparse}
+\RequirePackage[arrow, matrix, curve]{xy}
+\RequirePackage[standardstyle,headsepline,markusedcase]{scrpage2} 
+\RequirePackage{array}
+\RequirePackage{shadethm}
+\RequirePackage{amssymb}
+\RequirePackage{pgfplots}
+\RequirePackage{thmtools}
+\RequirePackage{graphicx}
+\RequirePackage{color}
+\RequirePackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=red,
+	linktoc=all
+}
+
+\theoremstyle{definition}
+\newtheorem{de}{Definition}[chapter]
+\newtheorem{be}[de]{Bemerkung}
+\newtheorem{bsp}[de]{Beispiel}
+
+\theoremstyle{plain}
+\definecolor{shadethmcolor}{rgb}{255,255,255}%
+\definecolor{shaderulecolor}{rgb}{0.0,0.0,0.0}   % Farbe des Rahmens
+\setlength{\shadeboxrule}{1pt}   % Breite des Rahmens
+\newshadetheorem{theo}[de]{Theorem}
+\newtheorem{lem}[de]{Lemma}
+\newshadetheorem{axiom}[de]{Axiom}
+\newtheorem{kor}[de]{Korollar}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\ip}[2]{\left\langle #1,#2 \right\rangle}
+\newcommand{\lin}[2]{\mathcal{L}(#1,#2)}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand{\la}{\lambda}
+\newcommand{\vek}[1]{\textnormal{\textbf{#1}}}
+\newcommand{\g}{\gamma}

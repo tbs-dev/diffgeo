@@ -1,0 +1,301 @@
+\documentclass[
+pdftex,
+oneside,
+%halfparskip,
+headsepline,
+11pt, 
+]{scrreprt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{header-commands}
+
+% 1. Emulation von fncychap mit KOMA-Script-Mitteln:
+\newlength{\ChapterRuleWidth}
+\newcommand*{\ChRuleWidth}[1]{\setlength{\ChapterRuleWidth}{\dimexpr #1}}%
+\newcommand*{\ChNameVar}{\setkomafont{chapterprefix}}%
+\newcommand*{\ChTitleVar}{\setkomafont{chapter}}%
+\newcommand*{\ChNumVar}{\setkomafont{chapternumber}}%
+\newcommand*{\ChapterNameCase}[1]{#1}
+\newcommand*{\ChNameUpperCase}{\let\ChapterNameCase\MakeUppercase}
+\newcommand*{\ChNameIs}{\renewcommand*\ChapterNameCase[1]{##1}}
+\newcommand*{\ChNameLowerCase}{\let\ChapterNameCase\MakeLowercase}
+\newcommand*{\ChapterTitleCase}[1]{#1}
+\newcommand*{\ChTitleUpperCase}{\let\ChapterTitleCase\MakeUppercase}
+\newcommand*{\ChTitleIs}{\renewcommand*\ChapterTitleCase[1]{##1}}
+\newcommand*{\ChTitleLowerCase}{\let\ChapterTitleCase\MakeLowercase}
+
+% 2. Einstellungen fÃ¼r den Stil Sonny:
+\ChRuleWidth{1pt}
+\KOMAoptions{chapterprefix}% Es ist ein PrÃ¤fix-Stil
+\newkomafont{chapternumber}{\fontsize{60}{62}\usefont{OT1}{ptm}{m}{n}\selectfont}
+\RedeclareSectionCommand[%
+beforeskip=-61pt,% Abstand Ã¼ber der PrÃ¤fixzeile bzw. der Linie
+innerskip=15pt,% Abstand zwischen PrÃ¤fixzeile und Text
+afterskip=40pt,% Abstand unter dem Text
+font=\normalfont\rmfamily\Huge,% Schrift des Namens
+prefixfont=\fontsize{14}{16}\usefont{OT1}{phv}{m}{n}\selectfont,% Schrift der PrÃ¤fixzeile
+]{chapter}
+\usepackage{picture}
+\usepackage{xcolor}
+\renewcommand*{\chapterformat}{%
+	\mbox{%
+		\setlength{\fboxsep}{0pt}\colorbox{white}{%
+			\strut\ChapterNameCase{\chapappifchapterprefix{\enskip}}}%
+		{\usekomafont{chapternumber}{%
+				\colorbox{white}{\strut\thechapter\IfUsePrefixLine{}{\enskip}}}}%
+	}%
+}
+
+\renewcommand*{\chapterlineswithprefixformat}[3]{% Ebene, Nummer, Text
+	\IfArgIsEmpty{#2}{}{%
+		% Die Prefix-Zeile aus Argument 2 wird nur gesetzt, wenn sie vorhanden
+		% ist.
+		\begin{picture}(0,0)
+		\setlength{\linethickness}{\ChapterRuleWidth}%
+		\usekomafont{chapternumber}{%
+			\put(.5\ChapterRuleWidth,0){%
+				\framebox(\dimexpr\linewidth-\ChapterRuleWidth,.9\ht\strutbox){}}}%
+		\end{picture}%
+		#2%
+	}%
+	\ChapterTitleCase{#3}%
+}
+
+\usepackage{picture}
+\usepackage{xcolor}
+
+
+
+
+\author{Tobias Klas}
+\title{Zusammenfassung Differentialgeometrie}
+
+\begin{document}
+\maketitle	
+\tableofcontents
+
+\newpage	
+
+\chapter{Analysis mit Kurven}
+\section{Parametrisierte Kurven}
+\begin{de}[Parametrisierte Kurven]
+	Seien $a,b\in \R$ mit $a<b$ und $X$ ein topologischer Raum. Eine stetige Funktion $c:[a,b]\to X$ heißt \textit{parametrisierte Kurve}. Der Punkt $c(a)\in X$ heißt \textit{Anfangspunkt} und der Punkt  $c(b)\in X$ \textit{Endpunkt} der parametrisierten Kurve $c$.
+	Ist $X=\R^n$ und ist $c$ eine $C^k$-Funktion, so nennen wir $c$ ein \textit{parametrisierte Kurve der Klasse $C^k$} oder einfach parametrisierte $C^k$-Kurve.  Eine parametrisierte $C^k$-Kurve $c$ heißt \textit{geschlossen}, falls \[ c(a)=c(b) \quad \textnormal{und falls } k\geq 1 \textnormal{ gilt für alle } 1 \leq r\leq k:\; D^rc(a)=D^rc(b).\]
+\end{de}
+\begin{de}[Jordan-Kurve] Eine parametrisierte Kurve $c$ heißt \textit{Jordan-Kurve}, falls $c$ geschlossen ist und $c$ auf $[a,b)$ injektiv ist. 
+\end{de}
+\begin{bsp}\quad
+	\begin{itemize}
+		\item \textit{(Doppel-)Helix:}
+		Sei $\sigma, \rho\in\R$. Das Bild der parametrisierten $C^\infty$-Kurve \[ c_{\rho,\sigma}:\R\to \R^3,\qquad t\mapsto(\rho \cos t,\rho \sin t,\sigma t)\] ist ein \textit{Kreis} um $\vek{0}$ mit Radius $|\rho|$, falls $\sigma=0$. Ist $\sigma \rho\neq 0$, so ist das Bild eine \textit{Helix}. Die Bilder von $c_{-\sigma,\rho}$ und $c_{\sigma,\rho}$ ergeben eine \textit{Doppelhelix}.
+		\item \textit{Doppelhelix:}
+		\item \textit{Neilsche Parabel:}
+	\end{itemize}
+\end{bsp}
+\begin{de}[Äquivalente Kurven]
+	Es seien $c_1:I_1\to \R^n$ und $c_2:I_2\to\R^n$ parametrisierte $C^k$-Kurven. Wir nennen $c_1$ und $c_2$ \textit{linear äquivalent}, falls es eine affin lineare bijektive Abbildung \[\varphi:I_1\to I_2, \quad t\mapsto at+b\] gibt, so dass \[ c_1=c_2\circ\varphi. \] Die Abbildung $\varphi$ heißt \textit{Parametertransformation}. Ist \[\varphi\in C^k,\quad c_1=c_2\circ\varphi\quad \textnormal{und}\quad\dot{\varphi}(t)\neq0 \textnormal{ für alle }t\in I_1,\] so heißen $c_1$ und $c_2$ \textit{äquivalent}. Gilt sogar für alle $t\in I_1$, dass \[ \dot{\varphi}(t)>0,\] so heißen $c_1$ und $c_2$ \textit{orientierbar äquivalent} und $\varphi$ \textit{zulässige Parametertransformation}.  
+\end{de}
+\begin{lem}
+	Durch die lineare Äquivalenz, die Äquivalenz und die orientierbare Äquivalenz zweier parametrisierter Kurven sind Äquivalenzrelationen definiert.
+\end{lem}
+\begin{proof}
+	
+\end{proof}
+\begin{de}[Länge]
+	Sei $(X,d)$ ein metrischer Raum. Dann ist die \textbf{Länge} einer parametrisierten Kurve $c:[a,b]\to X$ definiert durch
+	\[ L(c)=\sup \left\{\sum \limits _{{i=1}}^{n}d(c(t_{i}),
+	c(t_{{i-1}}))\,{\Bigg |}\,n\in {\mathbb  {N}},a\leq t_{0}<t_{1}<\ldots <t_{n}\leq b\right\}. \]
+	Eine parametrisierte Kurve mit endlicher Länge heißt \textit{rektifizierbar}.
+\end{de}
+\begin{lem}
+	Jede parametrisierte $C^k$-Kurve ist rektifizierbar und ihre Länge ist durch \[ L(c)=\int_a^b\norm{\dot{c}(t)}_2\diff{t}\] gegeben.
+\end{lem}
+\begin{proof}
+	Sei $Z:a=t_0<...<t_m=b$ eine Zerlegung von $[a,b]$, so nennen wir \[\delta(Z):=\sup_{1\leq i\leq m}|t_i-t_{i-1}|\] die \textit{Feinheit} von $Z$. Es gibt dann eine Folge $(Z_l)$ von Zerlegungen, so dass \[ \lim_{l\to\infty} L(c_{Z_l})=L(c) \] und $\lim_{t\to \infty}\delta(Z_t)=0.$ Wir parametrisieren $c_{\vek{x}^l_{i-1}\vek{x}^l_i}$ 
+	durch \[[t^l_{i-1},t^l_i]\to \R^n, \qquad t\mapsto \vek{x}^l_{i-1} + \frac{t-t^l_{i-1}}{t^l_{i}-t^l_{i-1}}(\vek{x}^l_i-\vek{x}^l_{i-1})\] mit $\vek{x}^l_i=c(t^l_i)$. Die Länge von $c_{\vek{x}^l_{i-1},\vek{x}^l_i}$ 
+	bleibt unverändert, außerdem gilt \[ L(c_{Z_t})=\sum_{i=1}^{m_l}\int_{t^l_{i-1}}^{t^l_i} \norm{\dot{c}_{\vek{x}^l_{i-1},\vek{x}^l_i}(t)} \diff t \] mit \[ \dot{c}_{\vek{x}^l_{i-1},\vek{x}^l_i}(t)=\frac{c(t^l_i)-c(t^l_{i-1})}{t^l_i-t^l_{i-1}}. \] Damit ist \[  \dot{c}_{\vek{x}^l_{i-1},\vek{x}^l_i}(t)-\dot{c}(t)=\frac{1}{t^l_i-t^l_{i-1}}\int_{t^l_{i-1}}^{t^l_i}(\dot{c}(\xi)-\dot{c}(t))\diff \xi \]
+	Setzen wir \[ f_l(t):=\dot{c}_{\vek{x}^l_{i-1},\vek{x}^l_i}(t), \] so ist wegen der gleichmäßigen Stetigkeit von $\dot{c}(t)$ in $[a,b]$ \[ \norm{\norm{f_l(t)}-\norm{\dot{c}(t)}}\leq \norm{f_l(t)-\dot{c}(t)}\leq \varepsilon, \] wenn $\delta(Z_l)\leq \delta(\varepsilon)$. Also ist $f_l(t)$ gleichmäßig konvergent und mit dem Konvergenzsatz von Lebesgue ist \[L(c)=\lim_{l\to\infty} L(c_{Z_l})=\lim_{l\to\infty}\int_a^b \norm{f_l(t)}\diff t=\int_a^b\norm{\dot{c}(t)}\diff t.\]
+\end{proof}
+\begin{de}[Gleichförmig parametrisierte Kurve]
+Sei $c:I\to\R^n$ eine parametrisierte $C^k$-Kurve und $t_0\in I$, so die Kurve $c$ \textit{gleichförmig parametrisiert für} $t\geq t_0$, falls ein $C>0$ existiert, so dass \[ \int_{t_0}^t\norm{\dot{c}(\theta)}_2\diff\theta=C(t-t_0). \] D.h. die Länge von $c$ eingeschränkt auf $[t_0,t]$ ist \textit{proportional} zu $t-t_0$.
+\end{de}
+\begin{lem}
+	Wenn $c:I\to\R^n$ eine parametrisierte $C^k$-Kurve, die für $t\geq t_0$ gleichförmig parametrisiert ist, dann gibt es ein $C>0$, so dass \[\norm{\dot{c}(\theta)}_2=C\] für alle $\theta\in[t_0,t]$.
+\end{lem}
+\begin{bsp}[Gleichförmige Bewegung eines Massepunktes]
+	
+\end{bsp}
+\begin{de}[Bogenlänge]
+Sei $c:[a,b]\to\R^n$ eine parametrisierte $C^k$-Kurve. Die Funktion \[ s_c(t):=\int_a^t \norm{\dot{c}(\theta)}\diff\theta, \qquad t\in [a,b]  \] heißt die
+\textit{Bogenlänge von $c$}. Wir sagen eine parametrisierte $C^k$-Kurve $c:[a,b]\to \R^n$ ist
+\textit{proportional zur Bogenlänge parametrisiert}, falls es ein $C>0$ gibt, so dass \[  \int_a^t \norm{\dot{c}(\theta)}\diff\theta = C(t-a)\] gilt. Eine parametrisierte $C^k$-Kurve $c:[a,b]\to \R^n$ ist \textit{mit Bogenlänge parametrisiert}, falls $C=1$ ist.
+\end{de}
+\begin{lem}
+	Wenn die parametrisierte $C^k$-Kurve $c:[a,b]\to \R^n$ mit Bogenlänge parametrisiert ist, dann ist \[ \norm{\dot{c}(t)}_2=1 \] für alle $t\in[a,b]$.
+\end{lem}
+\begin{theo}
+	Sei $c:[a,b]\to \R^n$ eine parametrisierte $C^k$-Kurve. So ist $c$ genau dann proportional zur Bogenlänge parametrisierbar, falls $\dot{c}(t)\neq \vek{0}$ für alle $t\in[a,b]$ gilt.
+\end{theo}
+\begin{proof}
+	$(\Rightarrow).$ Sei $c:[a,b]\to \R^n$ eine parametrisierte $C^k$-Kurve und nach Bogenlänge parametrisierbar. Differentiation nach $t$ ergibt \[ \frac{\diff}{\diff t} \int_{t_0}^t\norm{\dot{c}(\theta)}_2\diff\theta=C\neq 0.\]
+	$(\Leftarrow).$ Sei $\dot{c}\neq \vek{0}$ auf ganz $[a,b]$. Dann definiert \[s_c(t):=\int_a^t \norm{\dot{c}(\theta)}\diff\theta, \qquad t\in [a,b] \] eine zulässige Parametertransformation. Somit ist für $\tilde{c}=c\circ s_c^{-1}$ \[\norm{\frac{\diff}{\diff \theta}\tilde{c}(\theta)}=\norm{\dot{c}(s_c^{-1}(\theta))}\frac{1}{\norm{\dot{c}(s_c^{-1}(\theta))}}=1\]
+\end{proof}
+\begin{de}[Reguläre Kurve]
+	Es sei $c:I\to\R^n$ eine parametrisierte $C^k$-Kurve. Wir nennen die Kurve $c$ \textit{regulär}, falls für alle $t\in I$ \[\dot{c}(t)\neq \vek{0}\in \R^n\] gilt.
+\end{de}
+\begin{bsp}
+	
+\end{bsp}
+\begin{de}[Tangenete]
+	Für eine reguläre parametrisierte $C^k$-Kurve $c:I\to\R^n$ heißt die durch
+	\begin{align*}
+	g:\R&\to\R^n\\
+	\lambda&\mapsto c(t)+\lambda\dot{c}(t)
+	\end{align*}
+	definierte Gerade im $\R^n$ \textit{Tangente an $c$ im Punkt $c(t)$}. Der Vektor $\dot{c}(t)$ heißt \textit{Tangentialvektor an $c$ im Punkt $c(t)$}.
+\end{de}
+\section{Vektorfelder und Integralkurven}
+\begin{de}[Gebiet]
+	Sei $X$ ein topologischer Raum. Ein \textit{Gebiet} $G\subseteq X$ ist eine offene, nichtleere und zusammenhängende Teilmenge von $X$. Ein Gebiet $G\subseteq \R^n$ heißt \textit{sternförmig}, falls es ein $x_0\in G$ gibt, so dass für alle $x\in G$ die Strecke \[[x_0x]=\lbrace x_0+t(x-x_0)\mid t\in [0,1]\rbrace\] eine Teilmenge von $G$ ist. Das Gebiet $G$ nennen wir \textit{konvex}, falls für alle $x,y\in G$ und alle $t\in \R$ mit $0\leq t\leq 1$ gilt, dass \[  tx+(1-t)y\in G \] ist.
+\end{de}
+\begin{de}[Gewöhnliche Differentialgleichung]
+Sei $G\subseteq \R^n$ ein Gebiet und $F\in C^0((a,b)\times G,\R^n)$. Eine Funktion $u\in C^1((\alpha,\beta),G)$ mit $a\leq \alpha <\beta\leq b$ heißt \textit{Lösung der durch $F$ definierten gewöhnlichen Differentialgleichung erster Ordnung mit Anfangswert $u_0\in G$ in $t_0\in (\alpha,\beta)$}, wenn gilt: 
+\begin{align*}
+	\dot{u}(t)&=F(t,u(t)), \quad t\in (\alpha,\beta),\\
+	u(t_0)&=u_0.
+\end{align*} 
+\end{de}
+\begin{theo}[Satz von Picard-Lindelöf]
+	Sei $-\infty\leq a<b\leq \infty$, $G\subseteq \R^n$ ein Gebiet und $F\in C^0((a,b)\times G,\R^n)$. Es gilt:
+	\begin{itemize}
+		\item[(i)] Zu jedem $t_0\in (a,b)$ und jedem $f_0\in G$ gibt es ein $\varepsilon>0$ mit $(t_0-\varepsilon,t_0+\varepsilon)\subseteq (a,b)$ und eine Umgebung $U$ von $f_0\in G$, so dass für $u_1\in U$ eine Lösung $u\in C^1((t_0-\varepsilon,t_0+\varepsilon),G)$ des Problems \begin{align*}
+		\dot{u}(t)&=F(t,u(t)),\quad t\in (t_0-\varepsilon,t_0+\varepsilon),\\u(t_0)&=u_1
+		\end{align*}
+		existiert.
+		\item[(ii)] Erfüllt $F$ in jedem Punkt $(t_0,u_0)$ die Bedingung, dass zu jedem $(t_0,u_0)$ eine Umgebung $(t_0-\varepsilon,t_0+\varepsilon)\times U\subset(a,b)\times G$ derart existiert, dass für $t_0-\varepsilon<t<t_0+\varepsilon$ und $x_1,x_2\in U$ \[  \norm{F(t,x_1)-F(t,x_2)}\leq M\norm{x_1-x_2} \] gilt mit einer nur von $\varepsilon$ und $U$ abhängigen Konstanten $ M$, so sind die nach $(i)$ existierenden Lösungen für jeden Anfangswert eindeutig bestimmt.
+		\item[(iii)] Gilt sogar $F\in C^k$ mit $k\geq 1$, so gilt für die Lösung $u$ des Anfangswertproblems $u\in C^{k+1}$.
+	\end{itemize}
+\end{theo}
+\begin{de}[Dynamisches System]
+	Da durch diese Differentialgleichungen oft die zeitliche Entwicklung bzw. die Dynamik vieler natürlicher Phänomene beschrieben werden nennen wir sie auch \textit{dynamische Systeme}. Hängt $F$ nicht explizit von der Zeit ab, d.h. \[ F(t,x)=\tilde{F}(x), \] so ist \[ \dot{u}(t)=\tilde{F}(u(t)),  \] so nennen wir das System \textit{autonom}. Alle Systeme für die das nicht gilt heißen \textit{nicht autonom}.
+\end{de}
+\begin{de}[$C^k$-Vektorfeld]
+	Sei $G\subseteq \R^n$ ein Gebiet. Eine Funktion $F\in C^k(G,\R^n)$, $k\in \mathbb{Z}_+$, heißt ein $k$-fach differenzierbares Vektorfeld (oder kürzer $C^k$-Vektorfeld) in $G$.
+\end{de}
+\begin{de}[Integralkurve]
+Sei $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$, und $x_0\in G$. Jede $C^1$-Lösung $c:[a,b]\to G$ der durch $F$ definierten Differentialgleichung mit $-\infty\leq a<0<b\leq \infty$ und $c(0)=x_0$ heißt eine Integralkurve von $F$ durch $x_0$.
+\end{de}
+\begin{bsp}
+	Wir betrachen folgende Differentialgleichung:
+	\[  \dot{u}(t)= \frac{2u(t)}{t}.\] Also ist $f(t,u(t))=frac{2u(t)}{t}$ für $x=u(t)$, somit ergibt sich $f(t,x)=\frac{2x}{t}$. Diese Differentialgleichung ist also nicht autonom. Wir sehen, dass, wenn der Graph einer Lösung durch den Punkt $(t,x)$ läuft, dieser dort die Steigung $\frac{2x}{t}$ hat. Somit lässt sich jedem Punkt $(t,x)$ in einem Gebiet $G\subseteq\R^2$ ein Vektor mit Steigung $\frac{2x}{t}$ zuordnen. Somit haben wir durch \[F:G\to \R^2,\qquad (t,x)\mapsto (1,\frac{2x}{t})\] ein Vektorfeld definiert. Damit sind alle möglichen Lösungen $u$ der Differentialgleichung durch $F$ definiert. Die allgemeine Lösung der Differential ist $u(t)=kt^2$. Für einen konkreten Anfangswert $u(1)=5$ ist somit $u(t)=5t^2$ die Lösung der Differentialgleichung. Damit ist \[ c:[1,\infty)\to \R^2,\qquad t\mapsto (t,5t^2) \] die gesuchte Integralkurve zu $F$ durch $(1,5)$, denn \[ \dot{c}(t)=(1,10t)=(1,\frac{2\cdot 5t^2}{t})=(1,\frac{2u(t)}{t})=(1,f(t,u(t)))=F(t,u(t)) \]
+\end{bsp}
+\begin{de}[Stationärer Punkt]
+	Sei $F$ ein $C^k$-Vektorfeld in $G$. Die Punkte $x\in G$ mit $F(x)=0$ heißen \textit{stationären Punkte von $F$}.
+\end{de}
+\begin{theo}[Fundamentalsatz über die Integralkurve]
+	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$. Dann gibt es zu jedem $x\in G$ eine ausgezeichnete Integralkurve $c_x:(a_x,b_x)\to G$ durch $x$ mit folgenden Eigenschaften: \begin{itemize}
+		\item[(i)] $-\infty\leq a_k<0<b_k\leq\infty$,
+		\item[(ii)] $c_x\in C^{k+1}((a_x,b_x),G)$,
+		\item[(iii)] Ist $c:(a,b)\to G$ eine Integralkurve durch $x$, so ist $a_x\leq a <b \leq b_x$ und $c=c_x\mid_{(a,b)}$,
+		\item[(iv)] zu jedem $x\in G$ und $t\in (a_x,b_x)$ gibt es eine Umgebung $U$ von $x$ in $G$ und ein $\varepsilon>0$, so dass die Abbildung \begin{align*}
+		 U\times (t-\varepsilon,t+\varepsilon) &\longrightarrow G\\
+		 (y,s)\mapsto c_y(s)
+		\end{align*}
+		 von der Klasse $C^k$.
+	\end{itemize}
+\end{theo}
+\begin{proof}
+	Sei $C_x$ die Menge aller Integralkurven von $F$ durch $x$. Für zwei Kurven $c_1,c_2$ ist durch $c_1\prec c_2 :\Leftrightarrow (a_1,b_1)\subset (a_2,b_2)$ eine Halbordnung auf $C_x$ definiert. Nach dem Satz von Picard-Lindelöf ist $c_1=c_2$ auf $(a_1,b_1)$. Es bleibt nur zu zeigen, dass $C_x$ bezüglich der Halbordnung ein maximales Element hat. Sei $D\subset C_x$ und $c\in D$ mit Definitionsintervall $(a_c,b_c)$. Somit ist \[(a_x,b_x):=\bigcup_{c\in D}(a_c,b_c).\] Setzen wir \[ c_x(t):=c(t),\qquad t\in (a_c,b_c). \] Aus dem Satz von Picard-Lindelöf folgt, dass $c_x$ wohldefiniert und eine Integralkurve durch $x$ ist, womit nach dem Lemma von Zorn $C_x$ ein maximales Element besitzt.
+\end{proof}
+\begin{de}[Vollständiges $C^k$-Vektorfeld]
+	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$. $F$ heißt \textit{vollständig}, wenn $(a_x,b_x)=\R$ für jedes $x\in G$.
+\end{de}
+\begin{de}[Fluss]
+	Sei $F$ ein $C^1$-Vektorfeld auf einem Gebiet $G\subseteq \R^n$. Nach dem Satz von Picard-Lindelöf gibt es für jedes $x_0 \in G$ eine eindeutige maximale Lösung $c_{x_0}:(a_{x_0},b_{x_0})\to \R$ der Differentialgleichung \[ \dot{x}(t)=F(x),\quad x(0)=x_0.\] Die Abbildung $\Phi(t,x):=c_(t)$ heißt \textit{Fluss des Vektorfeldes $F$}.
+\end{de}
+\begin{lem}[Eigenschaften des Flusses]
+	
+\end{lem}
+\begin{de}[Modul über dem Ring $C^k(G)$]
+	
+\end{de}
+\begin{de}[Lineares stetiges Vektorfeld]
+Ein $C^0$-Vektorfeld $F$ im $\R^n$ heißt \textit{linear}, falls es eine lineare Funktion in $x\in \R^n$ ist, d.h. \[ F(\la x+\mu y)=\la F(x)+\mu F(y). \]
+\end{de}
+\begin{theo}[Normalformensatz]
+	
+\end{theo}
+\begin{de}[Gradientenfeld]
+	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$. $F$ ist ein \textit{Gradientenfeld}, falls es eine $C^{k+1}$-Funktion $\varphi:G\to \R$ gibt mit \[F(x)=\nabla \varphi(x).\]
+\end{de}
+\begin{lem}[Integrabilitätsbedingungen]
+	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$.  $F$ ist ein Gradientenfeld, falls die Integritätsbedingungen
+	 \[  \partial_j F_i(x)=\partial_i F_j(x),\qquad x\in G, 1\leq i,j\leq n \] 
+	 gelten.
+\end{lem}
+\begin{proof}
+	
+\end{proof}
+\section{Kurvenintegrale}
+Wir erinnern zunächst daran, dass eine endliche Kurve im $\R^n$  Hausdorff-Dimension $1$ hat. D.h. die Länge einer endlichen Kurve  entspricht dem Hausdorff-Maß von $\mathcal{H}^1$ der Dimension 1.
+\begin{de}[Kurvenintegral]
+	Sei $f:\R^n\to \R$ ein $C^0$-Skalarfeld und $c:[a,b]\to \R^n$ eine parametrisierte $C^1$-Kurve ( oder auch stückweise $C^1$). Dann ist das \textit{Kurvenintegral erster Art} entlang der Kurve $c$ definiert als \[  \int_c f \diff s:=\int_a^b f(c(t))\norm{\dot{c}(t)}_2\diff t. \] Hierbei  ist $s$ die Länge eines Kurvenelements. Sei $F:\R^n\to \R^n$ ein $C^0$-Vektorfeld und $c:[a,b]\to \R^n$ eine parametrisierte $C^1$-Kurve. Dann ist das \textit{Kurvenintegral zweiter Art} entlang der Kurve $c$ definiert als \[ \int_{c} F \diff s:= \int_a^b \ip{F(c(t))}{\dot{c}(t)}\diff t. \]
+\end{de}
+\begin{lem}
+	Sei $G\subseteq \R^n$ ein Gebiet, $F$ ein $C^0$-Vektorfeld in $G$ und $c_1:[a,b]\to G$ eine reguläre Kurve. Ist $\varphi:[\alpha,\beta]\to[a,b]$ eine Parametertransformation von $c_1$, dh. $c_2=c_1\circ\varphi$, so gilt \[  \int_{c_2} F \diff s = \pm \int_{c_1}F\diff s . \]
+\end{lem}
+\begin{bsp}
+	
+\end{bsp}
+\begin{de}[Energie einer regulären Kurve]
+	Sei $c:[a,b]\to \R^n$ eine reguläre Kurve, so nennen wir
+	\[ E(c):=\int_a^b\norm{\dot{c}(t)}^2\diff t \] die \textit{Energie der Kurve}.
+\end{de}
+\begin{lem}
+	Das Kurvenintegral ist linear, d.h. für zwei $C^0$-Vektorfelder $V,W$ ist \[ \int_c (\alpha V + W)\diff s=\alpha \int_c V \diff s+\int_c W\diff s. \]  Es ist bis auf das Vorzeichen invariant bzgl. der Durchlaufrichtung der Kurve,  d.h. ob die Kurve positiv oder negativ durchlaufen wird. Insbesondere ist für eine $C^0$-Vektorfeld $F$ die aus den regulären Kurven $c_1$ und $c_2$ zusammen gesetzte Kurve $c=c_1\star c_2$ das Kurvenintegral durch \[  \int_{c_1\star c_2} F \diff s=\int_{c_1}F\diff s+\int_{c_2}F \diff s \] gegeben.
+\end{lem}
+\begin{proof}
+	Die erste zwei Aussagen folgen direkt aus den Eigenschaften des abstrakten Integrals. Sei $c_1:[a,b]\to \R^n$ und $c_2:[c,d]\to \R^n$ zwei parametrisierte reguläre Kurven. Dann ist  \begin{align*}
+	\int_{c_1\star c_2}F \diff s &= \int_a^{b+(d-c)} \ip{F(c_1\star c_2(t))}{\dot{(c_1\star c_2)}(t)}\diff t\\
+	&=\int_a^b\ip{F(c_1(t))}{\dot{c}_1(t)}\diff t + \int_a^{b+(d-c)}\ip{F(t-b+c)}{\dot{c}_2(t-b+c)}\diff t\\
+	&=\int_{c_1}F\diff s+\int_{c_2}F \diff s
+	\end{align*}
+\end{proof}
+\begin{de}[Wegunabhängig integrierbar]
+	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^0$-Vektorfeld auf $G$. Dann heißt $F$ \textit{wegunabhängig integrierbar}, falls für jede parametrisierte geschlossene stückweise $C^1$-Kurve $c$ in $G$ gilt, dass \[ \int_c F \diff s=0. \]
+\end{de}
+\begin{theo}
+	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^0$-Vektorfeld auf $G$. $F$ ist genau dann in $G$ wegunabhängig integrierbar, wenn $F$ ein Gradientenfeld ist, d.h. wenn es $\varphi\in C^1(G)$ gibt mit \[ F=\nabla\varphi.\] Insbesondere ist ein $C^1$-Vektorfeld $F$ auf einen sternförmigen Gebiet genau dann ein Gradientenfeld, wenn die Integrabilitätsbedingungen \[ \partial_{j}F_i=\partial_iF_j \qquad \textnormal{ für } i,j\in\left\lbrace1,...,n\right\rbrace \] erfüllt sind.
+\end{theo}
+\begin{proof}
+	content...
+\end{proof}
+\section{Satz von Gauß und die Formeln von Green}
+\begin{de}[Gebiete erster und zweiter Art]
+	\end{de}
+\begin{de}[Randintegral im $\R^2$]
+	
+\end{de}
+\begin{theo}[Satz von Gauß-Green]
+	
+\end{theo}
+\begin{de}[Innere und äußere Normale]
+	
+\end{de}
+\begin{de}[Integral über einer Kurve]
+	
+\end{de}
+\begin{theo}[Satz von Gauß]
+	
+\end{theo}
+\begin{theo}[Formeln von Green]
+	
+\end{theo}
+
+
+
+
+
+
+\end{document}     
