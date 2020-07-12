@@ -157,7 +157,7 @@ Sei $c:[a,b]\to\R^n$ eine parametrisierte $C^k$-Kurve. Die Funktion \[ s_c(t):=\
 \end{de}
 \section{Vektorfelder und Integralkurven}
 \begin{de}[Gebiet]
-	Sei $X$ ein topologischer Raum. Ein \textit{Gebiet} $G\subseteq X$ ist eine offene, nichtleere und zusammenhängende Teilmenge von $X$. Ein Gebiet $G\subseteq \R^n$ heißt \textit{sternförmig}, falls es ein $x_0\in G$ gibt, so dass für alle $x\in G$ die Strecke \[[x_0x]=\lbrace x_0+t(x-x_0)\mid t\in [0,1]\rbrace\] eine Teilmenge von $G$ ist. Das Gebiet $G$ nennen wir \textit{konvex}, falls für alle $x,y\in G$ und alle $t\in \R$ mit $0\leq t\leq 1$ gilt, dass \[  tx+(1-t)y\in G \] ist.
+	Sei $X$ ein topologischer Raum. Ein \textit{Gebiet} $G\subseteq X$ ist eine offene, nichtleere und zusammenhängende Teilmenge von $X$. Ein Gebiet $G\subseteq \R^n$ heißt \textit{sternförmig}, falls es ein $\vek{x}_0\in G$ gibt, so dass für alle $\vek{x}\in G$ die Strecke \[[\vek{x}_0\vek{x}]=\lbrace \vek{x}_0+t(\vek{x}-\vek{x}_0)\mid t\in [0,1]\rbrace\] eine Teilmenge von $G$ ist. Das Gebiet $G$ nennen wir \textit{konvex}, falls für alle $\vek{x},\vek{y}\in G$ und alle $t\in \R$ mit $0\leq t\leq 1$ gilt, dass \[  t\vek{x}+(1-t)\vek{y}\in G \] ist.
 \end{de}
 \begin{de}[Gewöhnliche Differentialgleichung]
 Sei $G\subseteq \R^n$ ein Gebiet und $F\in C^0((a,b)\times G,\R^n)$. Eine Funktion $u\in C^1((\alpha,\beta),G)$ mit $a\leq \alpha <\beta\leq b$ heißt \textit{Lösung der durch $F$ definierten gewöhnlichen Differentialgleichung erster Ordnung mit Anfangswert $u_0\in G$ in $t_0\in (\alpha,\beta)$}, wenn gilt: 
@@ -169,74 +169,97 @@ Sei $G\subseteq \R^n$ ein Gebiet und $F\in C^0((a,b)\times G,\R^n)$. Eine Funkti
 \begin{theo}[Satz von Picard-Lindelöf]
 	Sei $-\infty\leq a<b\leq \infty$, $G\subseteq \R^n$ ein Gebiet und $F\in C^0((a,b)\times G,\R^n)$. Es gilt:
 	\begin{itemize}
-		\item[(i)] Zu jedem $t_0\in (a,b)$ und jedem $f_0\in G$ gibt es ein $\varepsilon>0$ mit $(t_0-\varepsilon,t_0+\varepsilon)\subseteq (a,b)$ und eine Umgebung $U$ von $f_0\in G$, so dass für $u_1\in U$ eine Lösung $u\in C^1((t_0-\varepsilon,t_0+\varepsilon),G)$ des Problems \begin{align*}
-		\dot{u}(t)&=F(t,u(t)),\quad t\in (t_0-\varepsilon,t_0+\varepsilon),\\u(t_0)&=u_1
+		\item[(i)] Zu jedem $t_0\in (a,b)$ und jedem $\vek{f}_0\in G$ gibt es ein $\varepsilon>0$ mit $(t_0-\varepsilon,t_0+\varepsilon)\subseteq (a,b)$ und eine Umgebung $U$ von $\vek{f}_0\in G$, so dass für $u_1\in U$ eine Lösung \[u\in C^1((t_0-\varepsilon,t_0+\varepsilon),G)\] des Problems \begin{align*}
+		\dot{u}(t)&=F(t,u(t)),\quad t\in (t_0-\varepsilon,t_0+\varepsilon),\\u(t_0)&=\vek{u}_1
 		\end{align*}
 		existiert.
-		\item[(ii)] Erfüllt $F$ in jedem Punkt $(t_0,u_0)$ die Bedingung, dass zu jedem $(t_0,u_0)$ eine Umgebung $(t_0-\varepsilon,t_0+\varepsilon)\times U\subset(a,b)\times G$ derart existiert, dass für $t_0-\varepsilon<t<t_0+\varepsilon$ und $x_1,x_2\in U$ \[  \norm{F(t,x_1)-F(t,x_2)}\leq M\norm{x_1-x_2} \] gilt mit einer nur von $\varepsilon$ und $U$ abhängigen Konstanten $ M$, so sind die nach $(i)$ existierenden Lösungen für jeden Anfangswert eindeutig bestimmt.
+		\item[(ii)] Erfüllt $F$ in jedem Punkt $(t_0,u_0)$ die Bedingung, dass zu jedem $(t_0,\vek{u}_0)$ eine Umgebung $(t_0-\varepsilon,t_0+\varepsilon)\times U\subset(a,b)\times G$ derart existiert, dass für $t_0-\varepsilon<t<t_0+\varepsilon$ und $\vek{x}_1,\vek{x}_2\in U$ \[  \norm{F(t,\vek{x}_1)-F(t,\vek{x}_2)}\leq M\norm{\vek{x}_1-\vek{x}_2} \] gilt mit einer nur von $\varepsilon$ und $U$ abhängigen Konstanten $ M$, so sind die nach $(i)$ existierenden Lösungen für jeden Anfangswert eindeutig bestimmt.
 		\item[(iii)] Gilt sogar $F\in C^k$ mit $k\geq 1$, so gilt für die Lösung $u$ des Anfangswertproblems $u\in C^{k+1}$.
 	\end{itemize}
 \end{theo}
 \begin{de}[Dynamisches System]
-	Da durch diese Differentialgleichungen oft die zeitliche Entwicklung bzw. die Dynamik vieler natürlicher Phänomene beschrieben werden nennen wir sie auch \textit{dynamische Systeme}. Hängt $F$ nicht explizit von der Zeit ab, d.h. \[ F(t,x)=\tilde{F}(x), \] so ist \[ \dot{u}(t)=\tilde{F}(u(t)),  \] so nennen wir das System \textit{autonom}. Alle Systeme für die das nicht gilt heißen \textit{nicht autonom}.
+	Da durch diese Differentialgleichungen oft die zeitliche Entwicklung bzw. die Dynamik vieler natürlicher Phänomene beschrieben werden nennen wir sie auch \textit{dynamische Systeme}. Hängt $F$ nicht explizit von der Zeit ab, d.h. \[ F(t,\vek{x})=\tilde{F}(\vek{x}), \] so ist \[ \dot{u}(t)=\tilde{F}(u(t)),  \] so nennen wir das System \textit{autonom}. Alle Systeme für die das nicht gilt heißen \textit{nicht autonom}.
 \end{de}
 \begin{de}[$C^k$-Vektorfeld]
 	Sei $G\subseteq \R^n$ ein Gebiet. Eine Funktion $F\in C^k(G,\R^n)$, $k\in \mathbb{Z}_+$, heißt ein $k$-fach differenzierbares Vektorfeld (oder kürzer $C^k$-Vektorfeld) in $G$.
 \end{de}
 \begin{de}[Integralkurve]
-Sei $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$, und $x_0\in G$. Jede $C^1$-Lösung $c:[a,b]\to G$ der durch $F$ definierten Differentialgleichung mit $-\infty\leq a<0<b\leq \infty$ und $c(0)=x_0$ heißt eine Integralkurve von $F$ durch $x_0$.
+Sei $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$, und $x_0\in G$. Jede $C^1$-Lösung $c:[a,b]\to G$ der durch $F$ definierten Differentialgleichung mit $-\infty\leq a<0<b\leq \infty$ und $c(0)=\vek{x}_0$ heißt eine Integralkurve von $F$ durch $\vek{x}_0$.
 \end{de}
 \begin{bsp}
 	Wir betrachen folgende Differentialgleichung:
-	\[  \dot{u}(t)= \frac{2u(t)}{t}.\] Also ist $f(t,u(t))=frac{2u(t)}{t}$ für $x=u(t)$, somit ergibt sich $f(t,x)=\frac{2x}{t}$. Diese Differentialgleichung ist also nicht autonom. Wir sehen, dass, wenn der Graph einer Lösung durch den Punkt $(t,x)$ läuft, dieser dort die Steigung $\frac{2x}{t}$ hat. Somit lässt sich jedem Punkt $(t,x)$ in einem Gebiet $G\subseteq\R^2$ ein Vektor mit Steigung $\frac{2x}{t}$ zuordnen. Somit haben wir durch \[F:G\to \R^2,\qquad (t,x)\mapsto (1,\frac{2x}{t})\] ein Vektorfeld definiert. Damit sind alle möglichen Lösungen $u$ der Differentialgleichung durch $F$ definiert. Die allgemeine Lösung der Differential ist $u(t)=kt^2$. Für einen konkreten Anfangswert $u(1)=5$ ist somit $u(t)=5t^2$ die Lösung der Differentialgleichung. Damit ist \[ c:[1,\infty)\to \R^2,\qquad t\mapsto (t,5t^2) \] die gesuchte Integralkurve zu $F$ durch $(1,5)$, denn \[ \dot{c}(t)=(1,10t)=(1,\frac{2\cdot 5t^2}{t})=(1,\frac{2u(t)}{t})=(1,f(t,u(t)))=F(t,u(t)) \]
+	\[  \dot{u}(t)= \frac{2u(t)}{t}.\] Also ist $f(t,u(t))=\frac{2u(t)}{t}$ für $x=u(t)$, somit ergibt sich $f(t,x)=\frac{2x}{t}$. Diese Differentialgleichung ist also nicht autonom. Wir sehen, dass, wenn der Graph einer Lösung durch den Punkt $(t,x)$ läuft, dieser dort die Steigung $\frac{2x}{t}$ hat. Somit lässt sich jedem Punkt $(t,x)$ in einem Gebiet $G\subseteq\R^2$ ein Vektor mit Steigung $\frac{2x}{t}$ zuordnen. Somit haben wir durch \[F:G\to \R^2,\qquad (t,x)\mapsto (1,\frac{2x}{t})\] ein Vektorfeld definiert. Damit sind alle möglichen Lösungen $u$ der Differentialgleichung durch $F$ definiert. Die allgemeine Lösung der Differential ist $u(t)=kt^2$. Für einen konkreten Anfangswert $u(1)=5$ ist somit $u(t)=5t^2$ die Lösung der Differentialgleichung. Damit ist \[ c:[1,\infty)\to \R^2,\qquad t\mapsto (t,5t^2) \] die gesuchte Integralkurve zu $F$ durch $(1,5)$, denn \[ \dot{c}(t)=(1,10t)=(1,\frac{2\cdot 5t^2}{t})=(1,\frac{2u(t)}{t})=(1,f(t,u(t)))=F(t,u(t)) \]
 \end{bsp}
 \begin{de}[Stationärer Punkt]
 	Sei $F$ ein $C^k$-Vektorfeld in $G$. Die Punkte $x\in G$ mit $F(x)=0$ heißen \textit{stationären Punkte von $F$}.
 \end{de}
 \begin{theo}[Fundamentalsatz über die Integralkurve]
-	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$. Dann gibt es zu jedem $x\in G$ eine ausgezeichnete Integralkurve $c_x:(a_x,b_x)\to G$ durch $x$ mit folgenden Eigenschaften: \begin{itemize}
+	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$. Dann gibt es zu jedem $\vek{x}\in G$ eine ausgezeichnete Integralkurve $c_\vek{x}:(a_\vek{x},b_\vek{x})\to G$ durch $\vek{x}$ mit folgenden Eigenschaften: \begin{itemize}
 		\item[(i)] $-\infty\leq a_k<0<b_k\leq\infty$,
-		\item[(ii)] $c_x\in C^{k+1}((a_x,b_x),G)$,
-		\item[(iii)] Ist $c:(a,b)\to G$ eine Integralkurve durch $x$, so ist $a_x\leq a <b \leq b_x$ und $c=c_x\mid_{(a,b)}$,
-		\item[(iv)] zu jedem $x\in G$ und $t\in (a_x,b_x)$ gibt es eine Umgebung $U$ von $x$ in $G$ und ein $\varepsilon>0$, so dass die Abbildung \begin{align*}
+		\item[(ii)] $c_\vek{x}\in C^{k+1}((a_\vek{x},b_\vek{x}),G)$,
+		\item[(iii)] Ist $c:(a,b)\to G$ eine Integralkurve durch $\vek{x}$, so ist $a_\vek{x}\leq a <b \leq b_\vek{x}$ und $c=c_\vek{x}\mid_{(a,b)}$,
+		\item[(iv)] Zu jedem $\vek{x}\in G$ und $t\in (a_\vek{x},b_\vek{x})$ gibt es eine Umgebung $U$ von $\vek{x}$ in $G$ und ein $\varepsilon>0$, so dass die Abbildung \begin{align*}
 		 U\times (t-\varepsilon,t+\varepsilon) &\longrightarrow G\\
-		 (y,s)\mapsto c_y(s)
+		 (\vek{y},s)\mapsto c_\vek{y}(s)
 		\end{align*}
 		 von der Klasse $C^k$.
 	\end{itemize}
 \end{theo}
 \begin{proof}
-	Sei $C_x$ die Menge aller Integralkurven von $F$ durch $x$. Für zwei Kurven $c_1,c_2$ ist durch $c_1\prec c_2 :\Leftrightarrow (a_1,b_1)\subset (a_2,b_2)$ eine Halbordnung auf $C_x$ definiert. Nach dem Satz von Picard-Lindelöf ist $c_1=c_2$ auf $(a_1,b_1)$. Es bleibt nur zu zeigen, dass $C_x$ bezüglich der Halbordnung ein maximales Element hat. Sei $D\subset C_x$ und $c\in D$ mit Definitionsintervall $(a_c,b_c)$. Somit ist \[(a_x,b_x):=\bigcup_{c\in D}(a_c,b_c).\] Setzen wir \[ c_x(t):=c(t),\qquad t\in (a_c,b_c). \] Aus dem Satz von Picard-Lindelöf folgt, dass $c_x$ wohldefiniert und eine Integralkurve durch $x$ ist, womit nach dem Lemma von Zorn $C_x$ ein maximales Element besitzt.
+	Sei $C_\vek{x}$ die Menge aller Integralkurven von $F$ durch $\vek{x}$. Für zwei Kurven $c_1,c_2$ ist durch $c_1\prec c_2 :\Leftrightarrow (a_1,b_1)\subset (a_2,b_2)$ eine Halbordnung auf $C_\vek{x}$ definiert. Nach dem Satz von Picard-Lindelöf ist $c_1=c_2$ auf $(a_1,b_1)$. Es bleibt nur zu zeigen, dass $C_\vek{x}$ bezüglich der Halbordnung ein maximales Element hat. Sei $D\subset C_\vek{x}$ und $c\in D$ mit Definitionsintervall $(a_c,b_c)$. Somit ist \[(a_\vek{x},b_\vek{x}):=\bigcup_{c\in D}(a_c,b_c).\] Setzen wir \[ c_\vek{x}(t):=c(t),\qquad t\in (a_c,b_c). \] Aus dem Satz von Picard-Lindelöf folgt, dass $c_\vek{x}$ wohldefiniert und eine Integralkurve durch $\vek{x}$ ist, womit nach dem Lemma von Zorn $C_\vek{x}$ ein maximales Element besitzt.
 \end{proof}
 \begin{de}[Vollständiges $C^k$-Vektorfeld]
-	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$. $F$ heißt \textit{vollständig}, wenn $(a_x,b_x)=\R$ für jedes $x\in G$.
+	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$. $F$ heißt \textit{vollständig}, wenn $(a_\vek{x},b_\vek{x})=\R$ für jedes $\vek{x}\in G$.
 \end{de}
 \begin{de}[Fluss]
-	Sei $F$ ein $C^1$-Vektorfeld auf einem Gebiet $G\subseteq \R^n$. Nach dem Satz von Picard-Lindelöf gibt es für jedes $x_0 \in G$ eine eindeutige maximale Lösung $c_{x_0}:(a_{x_0},b_{x_0})\to \R$ der Differentialgleichung \[ \dot{x}(t)=F(x),\quad x(0)=x_0.\] Die Abbildung $\Phi(t,x):=c_(t)$ heißt \textit{Fluss des Vektorfeldes $F$}.
+	Sei $F$ ein vollständigges $C^1$-Vektorfeld auf einem Gebiet $G\subseteq \R^n$. Nach dem Satz von Picard-Lindelöf gibt es für jedes $\vek{x}_0 \in G$ eine eindeutige maximale Lösung $c_{\vek{x}_0}:(a_{\vek{x}_0},b_{\vek{x}_0})\to \R$ der Differentialgleichung \[ \dot{\vek{x}}(t)=F(\vek{x}),\quad \vek{x}(0)=\vek{x}_0.\] Die Abbildung $\Phi(t,\vek{x}):=c_\vek{x}(t)$ heißt \textit{Fluss des Vektorfeldes $F$}.
 \end{de}
 \begin{lem}[Eigenschaften des Flusses]
-	
+	Sei $\Phi:\R\times G\to G$ der Fluss eines vollständigen $C^k$-Vektorfeldes $F$ in $G\subseteq \R^n$. Dann erfüllt der Fluss $\Phi_t$ folgende Eigenschaften:
+	\begin{itemize}
+		\item[(i)] Für jedes $t\in \R$ ist $\Phi_t:G\to G$ eine stetige Funktion.
+		\item[()] Für den Zeitpunkt  $t=0$ ist $\Phi_0$ die Identität $\operatorname{id}_G$ auf $G$.
+		\item[(iii)] Für $s,t\in \R$ ist $\Phi_t\circ\Phi_s=\Phi_{t+s}$.
+	\end{itemize}
 \end{lem}
 \begin{de}[Modul über dem Ring $C^k(G)$]
-	
+	Sei $G\subseteq \R^n$ ein Gebiet und es seien  $F,H$ zwei $C^k$-Vektorfelder in $G$ und $f\in C^k(G,\R)$ ein Skalarfeld. So definieren wir durch skalare Multiplikation \[ f(F(\vek{x})):=f(\vek{x})F(\vek{x})\] ein neues $C^k$-Vektorfeld $fF$ und durch Vektoraddition \[(F+H)(\vek{x}):=F(\vek{x})+H(\vek{x})\] ebenfalls ein neues $C^k$-Vektorfeld $F+H$ auf $G$. Der Vektorraum aller $C^k$-Vektorfelder auf $G$ ist ein \textit{Modul über dem Ring} $C^k(G)$.
 \end{de}
 \begin{de}[Lineares stetiges Vektorfeld]
-Ein $C^0$-Vektorfeld $F$ im $\R^n$ heißt \textit{linear}, falls es eine lineare Funktion in $x\in \R^n$ ist, d.h. \[ F(\la x+\mu y)=\la F(x)+\mu F(y). \]
+Ein $C^0$-Vektorfeld $F$ im $\R^n$ heißt \textit{linear}, falls es eine lineare Funktion in $\vek{x}\in \R^n$ ist, d.h. \[ F(\la \vek{x}+\mu \vek{y})=\la F(\vek{x})+\mu F(\vek{y}). \] 
 \end{de}
+Jedes lineare Vektorfeld $F$ in $\R^n$ gehört also eine Matrix $(F_{ij})$, so dass \[ F_i(x_1,...,x_n)=\sum_{j=1}^{n}F_{ij}x_j,\qquad 1\leq i\leq n. \] Für $n=1$ und $F:\R\to \R$ linear, so ist \[F(x)=ax\] für $a\in \R$. Somit ergibt sich für die Differentialgleichung \[ \dot{c}(t)=ac(t), c(0)=x_0 \] die Lösung \[c(t)=x_0e^{at}=e^{at}x_0. \] Für den mehrdimensionalen Fall \[\dot{c}(t)=F(c(t)),\qquad c(0)=\vek{x}_0 \] erhalten wir so $c(t)=e^{tF}(\vek{x}_0)$. Es stellt sich nun die Frage wie sich $e^{tF}$ praktisch berechnen lässt.
+Wir betrachten zwei Spezialfälle:\\
+$(i)$ Sei $F$ eine $n\times n$-Matrix. $F$ ist \textit{ähnlich zu einer Diagonalmatrix} $D=(\delta_{ij}\lambda_j)$, d.h. es gibt eine invertierbare Matrix $T$ mit \[F=TDT^{-1}.\] Somit sind $\lambda_1,..,\lambda_n$ gerade die Eigenwerte von $F$ und es gibt eine Basis $e_1,...,e_n$ von $\R^n$ mit $e_i$ ist Eigenvektor von $F$ zum Eigenwert $\lambda_i$. Somit ist \[e^{tF}=Te^{tD}T^{-1},\] während \[ e^{tD}=(\delta_{ij}e^{t\lambda_j}) \]
+$(ii)$ F ist \textit{nilpotent}, d.h. . 
+Zu dieser nilpotenten $n \times n$-Matrix existiert ein $k \leq n$ mit $F^k = 0$, also $F^n = 0$. 
+Dann wird $e^{tF}$ eine Matrix, deren sämtliche Koeffizienten Polynome in $t$ sind vom Grad kleiner gleich $n-1$. Eine nilpotente Matrix ist immer ähnlich zu einer oberen Dreiecksmatrix, die auf der Diagonalen nur Nullen hat.\\
+$(iii)$ Sei $A$ Element eines komplexer Vektorraums, so gibt es eine Zerlegung \[A=S+N,\qquad SN=NS\] mit $S$ einer diagonalisierbaren und $N$ einer nilpotenten Matrix. Da $S$ und $N$ kommutieren, gilt \[ e^A=e^{S+N}=e^Se^N.\] Für einen reellen Vektorraum gilt folgender Satz:
 \begin{theo}[Normalformensatz]
-	
+	Sei $F=(F_{ij})$ ein lineares Vektorfeld auf $\R^n$. Dann ist $F$ vollständig und der Fluss $(\Phi_t)$ von $F$ ist gegeben durch \[\Phi(t,\vek{x})=e^{tF}(\vek{x}),\qquad t\in \R,\vek{x}\in \R^n.\] Dabei ist \[e^{tF}:=\sum_{j=0}^\infty\frac{t^j}{j!}F^j=\left(  \sum_{k=1}^n a_{ij}^k(t) e^{\lambda_k t} \right),\]
+	wobei $\lambda_1,\lambda_n$ die Eigenwerte von $F$ sind und $a_{ij}^k(t)$ Polynome in $t$ vom Grad kleiner gleich $n-1$.
 \end{theo}
 \begin{de}[Gradientenfeld]
-	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$. $F$ ist ein \textit{Gradientenfeld}, falls es eine $C^{k+1}$-Funktion $\varphi:G\to \R$ gibt mit \[F(x)=\nabla \varphi(x).\]
+	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$. $F$ ist ein \textit{Gradientenfeld}, falls es eine $C^{k+1}$-Funktion $\varphi:G\to \R$ gibt mit \[F(\vek{x})=\nabla \varphi(\vek{x}).\] Wir sagen zu $\varphi$ auch \textit{Skalarpotential}.
 \end{de}
 \begin{lem}[Integrabilitätsbedingungen]
-	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$.  $F$ ist ein Gradientenfeld, falls die Integritätsbedingungen
-	 \[  \partial_j F_i(x)=\partial_i F_j(x),\qquad x\in G, 1\leq i,j\leq n \] 
-	 gelten.
+	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^k$-Vektorfeld in $G$, $k\geq 1$.  Ist $F$ ein Gradientenfeld, so sind die  Integritätsbedingungen
+	 \[  \partial_j F_i(\vek{x})=\partial_i F_j(x),\qquad \vek{x}\in G, 1\leq i,j\leq n \] 
+	 erfüllt. Ist das Gebiet zusammenhängend, so gilt sogar, dass $F$ ein Gradientenfeld ist genau dann, wenn alle Integrabilitätsbedingung erfüllt sind.
 \end{lem}
 \begin{proof}
-	
+	Sei $F$ ein Gradientenfeld, so gibt es also $\varphi\in C^{k+1}(G)$ mit \[  F_i(\vek{x})=\partial_i \varphi(\vek{x}). \] Da partielle Ableitungen vertauschbar sind gilt \[ \partial_j F_i(\vek{x})=\partial_j\partial_i\varphi(\vek{x})=\partial_i\partial_j\varphi(\vek{x})=\partial_i F_j(\vek{x}), \]
+	$\vek{x} \in G$, $1\leq i,j\leq n.$
 \end{proof}
+\begin{de}[Hamilton-Vektorfeld]
+	Ein $C^k$-Vektorfeld $F$ im $\R^{2n}$ heißt \textit{Hamilton-Vektorfeld}, falls es eine $C^{k+1}$-Funktion $H$ im $\R^{2n}$ gibt mit \[ F(\vek{x})=I(\nabla_\vek{x}H(\vek{x})),\qquad I:=\begin{pmatrix}
+	0 & I_n\\
+	-I_n & 0
+	\end{pmatrix}. \] $H$ heißt dann die zu $F$ gehörende \textit{Hamilton-Funktion}. 
+\end{de}
+\begin{bsp}
+	
+\end{bsp}
 \section{Kurvenintegrale}
 Wir erinnern zunächst daran, dass eine endliche Kurve im $\R^n$  Hausdorff-Dimension $1$ hat. D.h. die Länge einer endlichen Kurve  entspricht dem Hausdorff-Maß von $\mathcal{H}^1$ der Dimension 1.
 \begin{de}[Kurvenintegral]

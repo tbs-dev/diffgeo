@@ -2,5 +2,5 @@
 \contentsline {chapter}{\numberline {1}Analysis mit Kurven}{3}{chapter.1}% 
 \contentsline {section}{\numberline {1.1}Parametrisierte Kurven}{3}{section.1.1}% 
 \contentsline {section}{\numberline {1.2}Vektorfelder und Integralkurven}{7}{section.1.2}% 
-\contentsline {section}{\numberline {1.3}Kurvenintegrale}{11}{section.1.3}% 
-\contentsline {section}{\numberline {1.4}Satz von Gauß und die Formeln von Green}{12}{section.1.4}% 
+\contentsline {section}{\numberline {1.3}Kurvenintegrale}{13}{section.1.3}% 
+\contentsline {section}{\numberline {1.4}Satz von Gauß und die Formeln von Green}{15}{section.1.4}% 
