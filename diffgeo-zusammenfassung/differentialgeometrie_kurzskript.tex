@@ -291,28 +291,68 @@ Wir erinnern zunächst daran, dass eine endliche Kurve im $\R^n$  Hausdorff-Dime
 \begin{theo}
 	Sei $G\subseteq \R^n$ ein Gebiet und $F$ ein $C^0$-Vektorfeld auf $G$. $F$ ist genau dann in $G$ wegunabhängig integrierbar, wenn $F$ ein Gradientenfeld ist, d.h. wenn es $\varphi\in C^1(G)$ gibt mit \[ F=\nabla\varphi.\] Insbesondere ist ein $C^1$-Vektorfeld $F$ auf einen sternförmigen Gebiet genau dann ein Gradientenfeld, wenn die Integrabilitätsbedingungen \[ \partial_{j}F_i=\partial_iF_j \qquad \textnormal{ für } i,j\in\left\lbrace1,...,n\right\rbrace \] erfüllt sind.
 \end{theo}
-\begin{proof}
-	content...
-\end{proof}
+
 \section{Satz von Gauß und die Formeln von Green}
+Der Fundamentalsatz der Analysis sagt uns, dass wir unter gewissen Voraussetzung, wie der stetigen Differenzierbarbeit an die Stammfunktion des Integranden und der Integration auf einem kompakten Intervall, das eindimensionale Integral durch die Auswertung an den zwei Randpunkten der Stammfunktion berechnen können, also durch Integrale der Dimension 0. Die Frage ist nun, ob es einen vergleichbaren Zusammenhang zwischen Integralen der Dimension zwei und Integralen der Dimension 1 gibt, oder allgemeiner Integrale der Dimension $n$ und Integralen der Dimension $n-1$. Wir untersuchen diesen Zusammenhang zunächst für spezielle Gebiete $G\subseteq \R^2$.  
 \begin{de}[Gebiete erster und zweiter Art]
-	\end{de}
+	Seien $f_1,f_2:[a,b]\to \R$ zwei $C^1$-Funktion mit $f_1(x)<f_2(x)$ für $x\in[a,b]$. Dann nennen wir \[G:=\left\lbrace (x,y)\in\R^2\mid a<x<b, f_1(x)<y<f_2(x)\right\rbrace\] ein \textit{Gebiet 1. Art}. 
+	Seien $g_1,g_2:[a,b]\to \R$ zwei $C^1$-Funktionen mit $g_1(y)<g_2(y)$ für $y\in[a,b]$. Dann nennen wir \[G:=\left\lbrace (x,y)\in\R^2\mid a<y<b, g_1(x)<x<g_2(x)\right\rbrace\] ein \textit{Gebiet 2. Art}. 
+\end{de}
 \begin{de}[Randintegral im $\R^2$]
-	
+	Sei $G\subseteq \R^2$ ein Gebiet, dessen Rand $\partial G$ das Bild einer regulären geschlossenen stückweise stetig differenzierbare Jordankurve $c$ ist. Wird $c$ so orientiert, dass $J(\dot{c})$ immer ins Innere von $G$ zeigt, so ist für ein in einer Umgebung von $\partial G$ definiertes $C^0$-Vektorfeld F das \textit{Randintegral} definiert durch \[ \int_{\partial G} F \diff \mathcal{H}^1=\int_c F \diff s \]
 \end{de}
+Sei $h:\overline{G}\to \R$ stetig und $G$ ein Gebiet 1. Art, dann ist 
+\[ \int_G h(x,y)\diff(x,y)=\int_a^b \left(  \int_{f_1(x)}^{f_2(x)} h(x,y)\diff y \right)\diff x \]
+das bekannte Gebietsintegral. Das Integral über den Rand ist ein Kurvenintegral über die Randkurve $c$ mit bspw. folgender Parametrisierung $c:=c_1\circ c_2\circ c_3^{-1}\circ c_4^{-1}$ mit
+\begin{align*}
+&c_1:[a,b]\to \R^2,\qquad t\mapsto(t,f_1(t))\\
+&c_2:[0,1]\to \R^2,\qquad t\mapsto (b,f_1(b)+t(f_2(b)-f_1(b)))\\
+&c_3:[a,b]\to\R^2,\qquad t\mapsto (t,f_2(t))\\
+&c_4:[0,1]\to\R^2,\qquad t\mapsto (a,f_1(a)+t(f_2(a)-f_1(a)))
+\end{align*}
+Das Kurvenintegral ist für Vektorfelder definiert, das Gebietsintegral für Skalarfelder. Sei also $F$ ein $C^1$-Vektorfeld auf $\R^2$. Dann suchen wir eine Funktion $f$, so dass \[ \int_c F \diff s=\int_G f(x,y)\diff(x,y). \]
+Erfüllt $F$ die Integrabilitätsbedingungen, so ist \[\partial_2 F_1(x,y)=\partial_1F_2 \quad \textnormal{oder} \quad \left(  \partial_2F_1-\partial_1F_2 \right)(x,y)=0,\] damit ist $\int_c F\diff s=0$, da $c$ eine geschlossene Kurve ist. Also gilt in diesem Fall \[ \int_c F\diff s=\int_G  \left(  \partial_2F_1-\partial_1F_2 \right)(x,y) \diff(x,y).\] Die Frage ist nun, ob diese Identität immer gilt. Dazu formen wir um: \[ \int_G  \left(  \partial_2F_1-\partial_1F_2 \right)(x,y) \diff(x,y)=\int_a^b\int_{f_1(x)}^{f_2(x)}\left( \partial_2F_1-\partial_1F_2 \right)(x,y)\diff y\diff x. \]
+Mit dem Fundamentalsatz der Analysis ist \[  \int_a^b \int_{f_1(x)}^{f_2(x)}\partial_2 F_1(x,y)\diff y\diff x=\int_a^b F_1(x,f_2(x)))-F_1(x,f_1(x))\diff x.\] Weiter ist $\frac{\diff}{\diff x}\int_{f_1(x)}^{f_2(x)}F_2(x,y)\diff y=F_2(x,f_2(x))f'_2(x)-F_2(x,f_1(x))f'_1(x)+\int_{f_1(x)}^{f_2(x)}\partial_1 F_2(x,y)\diff y.$ Damit ist 
+\begin{align*}
+\int_G \left( \partial_2F_1-\partial_1F_2 \right)(x,y)\diff(x,y)&=\int_a^b(F_1(x,f_2(x))-F_1(x,f_1(x)))\diff x\\
+&+\int_a^b(F_2(x,f_2(x))f'_2(x)-F_2(x,f_1(x))f'_1(x))\diff x\\
+&-\int_{f_1(b)}^{f_2(b)}F_2(b,y)\diff y+\int_{f_1(a)}^{f_2(a)}F_2(a,y)\diff y\\
+&=\int_a^b[(F_1(x,f_2(x))+F_2(x,f_2(x))f'_2(x))\\&-(F_1(x,f_1(x))+F_2(x,f_1(x))f'_1(x))]\diff x\\
+&+\int_{f_1(a)}^{f_2(a)}F_2(a,y)\diff y-\int_{f_1(b)}^{f_2(b)}F_2(b,y)\diff y.
+\end{align*}
+Damit ergibt sich \[\int_G \left(  \partial_2 F_1-\partial_1 F_2 \right)(x,y)\diff(x,y)=\int_{c_3}F\diff s-\int_{c_1}F\diff s+\int_{c_4}F\diff s-\int_{c_2}F\diff s \] oder \[ \int_G\left(  \partial_1F_2-\partial_2F1 \right)(x,y)\diff(x,y)=\int_c F \diff s. \]
+Fassen wir unsere Ergebnis in einem Lemma zusammen. 
+\begin{lem}
+	Sei $G\subseteq \R^2$ ein Gebiet erster Art und $F$ ein  $C^1$-Vektorfeld in einem Gebiet $G'\subseteq \R^2$ mit $\overline{G}\subseteq G'$. Ist $c$ die Raumkurve von $G$ mit der oben angegebenen Parametrisierung, so gilt \[  \int_G \left(  \partial_1 F_2-\partial_2F_1 \right)(x,y)\diff (x,y)=\int_c F \diff s. \]
+\end{lem}
+Wir versuchen nun die Aussage auf beliebige Gebiete zu erweitern.
+In einem beliebigen Gebiet $G\subseteq \R^2$, dessen Rand Bild einer regulären geschlossenen stückweise stetig differenzierbare Jordankurve $c$ ist. Wählen wir eine doppelpunktfreie reguläre stückweise $C^1$-Kurve $c:[a,b]\to \R^2$ mit $c(a),c(b)\in\partial G$. Dann zerfällt $G$ in zwei Gebiete $G_1$ und $G_2$, die von $\partial G$ und $c$ berandet werden. Gilt vorheriges Lemma nun für $G_1$ und $G_2$, so auch für ganz $G$. Sei der Rand $\partial G_1$ parametrisiert durch $c_1\circ c^{-1}$ und der Rand $\partial G_2$ durch $	c\circ c_2$.
+Also gilt für ein geeignetes Vektorfeld $F$ 
+\begin{align*}
+\int_G(\partial_1F_2-\partial_2F_1)(x,y)\diff(x,y)&=\int_{G_1}\partial_1F_2-\partial_2F_1)(x,y)\diff(x,y)+\int_{G_2}\partial_1F_2-\partial_2F_1)(x,y)\diff(x,y)\\
+&=\int_{\partial G_1}F \diff \mathcal{H}^1+\int_{\partial G_2}F \diff \mathcal{H}^1=\int_{c_1\circ c^{-1}}F\diff s+\int_{c\circ c_2}F\diff s\\
+&=\int_{c_1}F\diff s + \int_{c_2} F \diff s= \int_{c_1\circ c_2}F \diff s=\int_{\partial G} F \diff s.
+\end{align*}
+Lässt ein Gebiet $G$ in endlich viele Gebiete erster bzw zweiter Art aufteilen, so nennen wir es \textit{zulässig}. Damit erhalten wir folgende bekannten Satz für Gebiete im $\R^2$.
 \begin{theo}[Satz von Gauß-Green]
-	
+	Sei $G\subseteq \R^2$ ein zulässiges Gebiet und $F$ ein $C^1$-Vektorfeld in einem Gebiet $G'\subseteq \R^2$ mit $G\subseteq G'$. Dann gilt \[ \int_G \left(  \partial_1 F_2-\partial_2 F_1 \right)(x,y)\diff (x,y)=\int_{\partial G} F \diff s. \]
 \end{theo}
+Der Satz ist allerdings nicht so einfach ohne Weiters auf höhere Dimensionen verallgemeinerbar. Dazu sind einige Modifikationen notwendig.
 \begin{de}[Innere und äußere Normale]
-	
+		Sei $G\subseteq \R^2$ ein zulässiges Gebiet und $F$ ein $C^1$-Vektorfeld. Dann ist \[ (x,y)\mapsto J(F(x,y))=(-F_2(x,y),F_1(x,y)) \] ein $C^1$-Vektorfeld. Der Satz von Gauß-Green liefert \[ \int_G (\partial_1 F_1+\partial_2F_2)(x,y)\diff (x,y)=\int_{\partial G}J(F)\diff s. \] Sei $c:[a,b]\to \R^2$ eine stückweise reguläre Kurve, die den Rand von $G$ parametrisiert. Damit ist \[\int_{\partial G} J(F)\diff \mathcal{H}^1=\int_a^b \ip{J(F)}{(c(t),\dot{c}(t))}\diff t=\int_a^b \ip{F(c(t))}{-J\left(  \frac{\dot{c}(t)}{\norm{\dot{c}(t)}} \right)}\norm{\dot{c}(t)}\diff t.\] Den Einheitsvektor \[ n_i(c(t)):=J\left(  \frac{\dot{c}(t)}{\norm{\dot{c}(t)}} \right) \] nennen wir die \textit{innere Normale von $\partial G $ im Punkt $c(t)$}. Analog nennen wir \[ n_a(c(t)):=-J\left(  \frac{\dot{c}(t)}{\norm{\dot{c}(t)}} \right) \] \textit{äußere Normale von $\partial G$ im Punkt $c(t)$.} 
 \end{de}
-\begin{de}[Integral über einer Kurve]
-	
-\end{de}
+Damit ist \[  \int_{\partial G} J(F) \diff \mathcal{H}^1=\int_a^b \ip{F(c(t))}{n_a(c(t))}\norm{\dot{c}(t)}\diff t \]   
+Setzen wir $f(x):=\ip{F(x)}{n_a(x)}$ für $x\in\partial G$, so folgt mit der Definition des Kurvenintegrals
+\[ \int_{\partial G} J(F) \diff \mathcal{H}= \int_a^b \ip{F(c(t))}{n_a(c(t))}\norm{\dot{c}(t)}\diff t =\int_a^b f(c(t))\norm{\dot{c}(t)}\diff t=\int_c f \diff s.\] Erinnern wir uns nun daran, dass \[  \int_G (\partial_1 F_1+\partial_2F_2)(x,y)\diff (x,y)=\int_{\partial G}J(F)\diff s \] ist und allgemein die Divergenz eines Vektorfeldes definiert ist durch \[ \div F(x):=\sum_{j=1}^n \partial_jF_j(x).\] Damit ergibt sich folgender wichtiger Satz.
 \begin{theo}[Satz von Gauß]
-	
+	ei $G\subseteq \R^2$ ein zulässiges Gebiet, d.h. $\partial G$ ist Bild einer regulären geschlossenen stückweisen $C^1$-Jordankurve und $F$ ein $C^1$-Vektorfeld in einem Gebiet $G'\subseteq \R^2$ mit $G\subseteq G'$. Dann ist \[  \int_G \div F \diff \mathcal{L}^2(x,y)=\int_{\partial G} \ip{F}{n_a} \diff s. \]
 \end{theo}
-\begin{theo}[Formeln von Green]
+Dieser Satz lässt sich einfacherer verallgemeinern. Das Gebietsintegral entspricht dem $n$-dimensionalen Lebesgue oder  Riemann-Integral. Die rechte Seite entspricht einem Oberflächenintegral der Dimension $n-1$. Die einzige Schwierigkeit bestünde nun nur noch darin für den $n$-dimensionalen Fall, die äußere Normale bzw. das entsprechende Maß für die Oberflächenelemente des abschnittsweise glatten Randes zu bestimmen, im allgemeinen ist dies das $(n-1)$-dimensionale Hausdorffmaß, welches für viele Anwendungsfälle den bekannten Formeln zur Oberflächenberechnung entspricht. 
+\begin{theo}[Formeln von Green] Sei $G\subseteq \R^n$ ein zulässiges Gebiet und seien $\varphi,\psi$ zwei $C^2$-Funktionen in einer Umgebung von $G$. Dann gelten folgende Formeln: 
+	\begin{align*}
+	\int_G \varphi \Delta \psi \diff \mathcal{L}^n(\vek{x})&=\int_{\partial G}\varphi \partial_{n_a}\psi \diff \mathcal{H}^{n-1}-\int_G\ip{\nabla \varphi}{\nabla \psi}\diff \mathcal{L}^n(\vek{x})\\
+	\int_G (\varphi \Delta \psi-\psi\Delta\varphi) \diff \mathcal{L}^n(\vek{x})&=\int_{\partial G}\left(  \varphi\partial_{n_a}\psi-\psi\partial_{n_a}\varphi \right)\diff \mathcal{H}^{n-1}
+	\end{align*}
 	
 \end{theo}
 
