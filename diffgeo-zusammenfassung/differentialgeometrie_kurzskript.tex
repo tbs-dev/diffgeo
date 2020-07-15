@@ -353,9 +353,20 @@ Dieser Satz lässt sich einfacherer verallgemeinern. Das Gebietsintegral entspri
 	\int_G \varphi \Delta \psi \diff \mathcal{L}^n(\vek{x})&=\int_{\partial G}\varphi \partial_{n_a}\psi \diff \mathcal{H}^{n-1}-\int_G\ip{\nabla \varphi}{\nabla \psi}\diff \mathcal{L}^n(\vek{x})\\
 	\int_G (\varphi \Delta \psi-\psi\Delta\varphi) \diff \mathcal{L}^n(\vek{x})&=\int_{\partial G}\left(  \varphi\partial_{n_a}\psi-\psi\partial_{n_a}\varphi \right)\diff \mathcal{H}^{n-1}
 	\end{align*}
-	
 \end{theo}
-
+\chapter{Lokale Kurventheorie}
+Wir untersuchen zunächst Kurven im $\R^2$. Kurven, deren Bild in einer Ebene liegt, werden auch \textit{planar} genannt. Der Winkel zwischen dem Tangentialeinheitsvektor und einem fixen Einheitsvektor definiert eine \textit{Winkelfunktion}.
+\begin{lem}
+	Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve und $\vek{e}$ ein Einheitsvektor des $\R^2$. Dann gibt es eine $C^1$-Funktion $\theta:[a,b]\to \R$, derart, dass \[  \dot{c}(t)=\norm{\dot{c}(t)}\left(  \cos \theta(t)\vek{e}+\sin\theta(t)J(\vek{e}), \qquad t\in [a,b]  \right) \]
+	
+\end{lem}
+\begin{proof}
+	content...
+\end{proof}
+\begin{de}[Winkelfunktion]
+	Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve. Ein Funktion $\theta:[a,b]\to\R^2$ mit der Eigenschaft \[  \dot{c}(t)=\norm{\dot{c}(t)}\left(  \cos \theta(t)\vek{e}+\sin\theta(t)J(\vek{e}), \qquad t\in [a,b]  \right) \]
+	für ein festes $\vek{e}\in\R^2$ heißt \textit{Winkelfunktion}.
+\end{de}
 
 
 
