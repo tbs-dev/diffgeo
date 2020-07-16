@@ -355,6 +355,7 @@ Dieser Satz lässt sich einfacherer verallgemeinern. Das Gebietsintegral entspri
 	\end{align*}
 \end{theo}
 \chapter{Lokale Kurventheorie}
+\section{Planare Kurven}
 Wir untersuchen zunächst Kurven im $\R^2$. Kurven, deren Bild in einer Ebene liegt, werden auch \textit{planar} genannt. Der Winkel zwischen dem Tangentialeinheitsvektor und einem fixen Einheitsvektor definiert eine \textit{Winkelfunktion}.
 \begin{lem}
 	Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve und $\vek{e}$ ein Einheitsvektor des $\R^2$. Dann gibt es eine $C^1$-Funktion $\theta:[a,b]\to \R$, derart, dass \[  \dot{c}(t)=\norm{\dot{c}(t)}\left(  \cos \theta(t)\vek{e}+\sin\theta(t)J(\vek{e}), \qquad t\in [a,b]  \right) \]	
@@ -374,9 +375,142 @@ Wir untersuchen zunächst Kurven im $\R^2$. Kurven, deren Bild in einer Ebene li
 	\[ \kappa(t)=\ip{\ddot{c}(t)}{J(\dot{c}(t))} \] und insbesondere 
 	\[|\kappa(t)|=\norm{\ddot{c}(t)}\] für $t\in[a,b]$.
 \end{lem}
+\begin{proof}
 
+\end{proof}
+\begin{lem}
+Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve in Komponentenschreibweise $c(t)=(x(t),y(t))$ und $s:[a,b]\to\R$ die Bogenlänge auf $c$. Dann gilt
+\[\kappa(s(t))=\frac{\dot{x(t)}\ddot{y}(t)-\ddot{x}(t)\dot{y}(t)}{\left( \dot{x}(t)^2+\dot{y}(t)^2  \right)^{\frac{3}{2}}}=\norm{\dot{c}(t)}^{-3}\ip{J(\dot{c}(t))}{\ddot{c}(t)}\] für $t\in[a,b]$
+\end{lem}
+\begin{proof}
+	
+\end{proof}
+\begin{bsp}
+	
+\end{bsp}
+\begin{de}[Ordnung]
+	
+\end{de}
+\begin{de}[Krümmungskreis]
+	
+\end{de}
+\begin{lem}[Invarianz der Krümmung]
+	
+\end{lem}
+\begin{de}[Evolute]
+	
+\end{de}
+\begin{lem}[Formeln von Frenet-Serret in der Ebene]
+	Sei $(e_1(t),e_2(t))$ die kanonische Basis einer mit Bogenlänge parametrisierten $C^{k+2}$-Kurve, d.h. $e_1(t)=\dot{c}(t)$ und $e_2(t)=J(e_1(t))$. Dann gilt \[  \begin{pmatrix}
+	\dot{e}_1(s)\\
+	\dot{e}_2(s)
+	\end{pmatrix}=\begin{pmatrix}
+	0 & \kappa(s)\\
+	-\kappa(s) & 0
+	\end{pmatrix} \begin{pmatrix}
+	e_1(s)\\
+	e_2(s)
+	\end{pmatrix} \]
+\end{lem}
+\begin{proof}
+Sei $c:[0,L]\to \R^2$ eine mit Bogenlänge parametrisierte $C^{k+2}$-Kurve. So ist \[ \kappa(s)=\ip{\dot{e}_1(s)}{e_2(s)} \] und wegen $\norm{e_1(s)}^2=1$ haben wir $\dot{e}_1(s)\perp e_1(s)$, d.h. es gilt außerdem \[  \dot{e}_1(s)=\ip{\dot{e}_1(s)}{e_2(s)}e_2(s)=\kappa(s)e_2(s). \]
+Da \[  \norm{e_2(s)}^2=1,\qquad \ip{e_1(s)}{e_2(s)}=0, \]
+ist durch Differentiation \[ \ip{\dot{e}_2(s)}{e_2(s)}=0,\quad \ip{\dot{e}_1(s)}{e_2(s)}+\ip{e_1(s)}{\dot{e}_2(s)}=0  \] oder 
+\[   \dot{e}_2(s)=\ip{\dot{e}_2(s)}{e_1(s)}e_1(s)=-\ip{\dot{e}_1(s)}{e_2(s)}e_1(s)=-\kappa(s)e_1(s). \]
+\end{proof}
+\begin{theo}[Fundamentalsatz der ebenen Kurventheorie]
+Sei $\kappa:[0,L]\to\R$ eine $C^k$-Funktion, $k\geq 0$. Dann gibt es eine reguläre, mit Bogenlänge parametrisierte $C^{k+2}$-Kurve $c:[0,L]\to \R^2$, deren Krümmung in jedem Punkt $c(s)$ gleich $\kappa(s)$ ist, $s\in [0,L]$. $c$ ist bis auf eigentliche Euklidische Bewegungen bestimmt, d.h. geben wir $c(0)$, $\dot{c}(0)$ und $J(\dot{c}(0))$ vor, so ist $c$ eindeutig bestimmt.
+\end{theo}
+\begin{proof}
+Wenden wir den Satz von Picard-Lindelöf auf die Formeln von Frenet-Serret an.
+\end{proof}
 
+\section{Raumkurven}
+\begin{de}[Krümmung]
+	Sei $c:[a,b]\to\R^n$, $n\geq 3$, eine mit Bogenlänge parametrisierte $C^2$-Kurve, so nennen wir 
+	\[ \kappa(t):=\norm{\ddot{c}(t)} \] die \textit{Krümmung} von $c$ im Kurvenpunkt $c(t)$.
+\end{de}
+\begin{de}[Vektorprodukt]
+	Das \textit{Vektorprodukt} (auch \textit{äußeres Produkt} genannt) ist für zwei Vektoren $\vek{u},\vek{v}\in \R^3$ definiert durch \[  \vek{u}\times \vek{v}:=\det \begin{pmatrix}
+	u_2 & u_3\\
+	v_2 & v_3\\
+	\end{pmatrix}\vek{e}_1-\det\begin{pmatrix}
+	u_1 & u_3\\
+	v_1 & v_3
+	\end{pmatrix} \vek{e}_2 +\det \begin{pmatrix}
+	u_1 & u_2 \\
+	v_1 & v_2
+	\end{pmatrix} \vek{e}_3 \]
+	Hierbei ist $(\vek{e}_1,\vek{e}_2,\vek{e}_3)$ ist die Standardbasis des $\R^3$.
+\end{de}
+\begin{de}[Orientierte Basis]
+	Eine orthonormale Basis $(\vek{e}_1,\vek{e}_2,\vek{e}_3)$ des $\R^3$ heißt \textit{orientiert}, falls \[ \det(\vek{e}_1,\vek{e}_2,\vek{e}_3)=1. \]
+\end{de}
+\begin{lem}[Krümmung einer Raumkurve]
+	Sei $c:[a,b]\to \R^3$ eine reguläre $C^2$-Kurve. Ihre Krümmung ist dann gegeben durch \[ \kappa(t)=\frac{\norm{\dot{c}(t)\times \ddot{c}(t)}}{\norm{\dot{c}(t)}^3}. \]
+\end{lem}
+\begin{proof}
+	Inhalt...
+\end{proof}
+\begin{de}[Ordnung der Regularität]
 
+\end{de}
+\begin{lem}[Invarianz der Regularität]
+	
+\end{lem}
+\begin{proof}
+	Inhalt...
+\end{proof}
+\begin{de}[Frenet-3-Bein]
+	
+\end{de}
+\begin{lem}[Invarianz des Frenet-3-Beins]
 
+\end{lem}
+\begin{de}[Torsion]
+	
+\end{de}
+\begin{theo}[Formeln von Frenet-Serret]
+	
+\end{theo}
+\begin{theo}[Fundamentalsatz der lokalen Kurventheorie im $\R^3$]
+	
+\end{theo}
+\begin{de}[spährisch]
+	
+\end{de}
+\begin{de}[Krümmungs- und Totsionsradius]
+	
+\end{de}
+\section{Lokale Kurventheorie im $\R^n$}
+\begin{de}[Frenet-$n$-Bein]
+	
+\end{de}
+\begin{de}[Orientierung]
+	
+\end{de}
+\begin{de}[aF-$n$-Bein]
 
+\end{de}
+\begin{theo}[Existenz- und Eindeutigkeitssatz des aF-$n$-Beins]
+	
+\end{theo}
+\begin{lem}[Verhalten von aF-$n$-Beinen unter Parametertransformation]
+
+\end{lem}
+\begin{lem}[Verhalten von aF-$n$-Beinen unter Euklidischen Bewegungen]
+	
+\end{lem}
+\begin{theo}[Ableitungsgleichungen von Frenet]
+	
+\end{theo}
+\begin{de}[$i$-te Krümmung einer Kurve]
+	
+\end{de}
+\begin{lem}[Invarianz der $i$-ten Krümmung unter Euklidischer Bewegung]
+	
+\end{lem}
+\begin{theo}[Fundamentalsatz der lokalen Kurventheorie]
+
+\end{theo}
 \end{document}     
