@@ -358,10 +358,15 @@ Dieser Satz lässt sich einfacherer verallgemeinern. Das Gebietsintegral entspri
 \section{Planare Kurven}
 Wir untersuchen zunächst Kurven im $\R^2$. Kurven, deren Bild in einer Ebene liegt, werden auch \textit{planar} genannt. Der Winkel zwischen dem Tangentialeinheitsvektor und einem fixen Einheitsvektor definiert eine \textit{Winkelfunktion}.
 \begin{lem}
-	Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve und $\vek{e}$ ein Einheitsvektor des $\R^2$. Dann gibt es eine $C^1$-Funktion $\theta:[a,b]\to \R$, derart, dass \[  \dot{c}(t)=\norm{\dot{c}(t)}\left(  \cos \theta(t)\vek{e}+\sin\theta(t)J(\vek{e}), \qquad t\in [a,b]  \right) \]	
+	Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve und $\vek{e}$ ein Einheitsvektor des $\R^2$. Dann gibt es eine $C^1$-Funktion $\theta:[a,b]\to \R$, derart, dass \[  \dot{c}(t)=\norm{\dot{c}(t)}\left(  \cos \theta(t)\vek{e}+\sin\theta(t)J(\vek{e})\right), \qquad t\in [a,b]  \]	
 \end{lem}
 \begin{proof}
-	content...
+Sei $\theta(t)$ definiert durch \[  \cos \theta(t)=\ip{\frac{\dot{c}(t)}{\norm{\dot{c}(t)}}}{\vek{e}} , \qquad \sin\theta(t)= \ip{\frac{\dot{c}(t)}{\norm{\dot{c}(t)}}}{J(\vek{e})}. \]
+Zu $t_0\in [a,b]$ gibt es ein $\varepsilon>0$, so dass für $t\in[t_0-\varepsilon,t_0+\varepsilon]\cap [a,b]$
+\[ \norm{\ip{\frac{\dot{c}(t)}{\norm{\dot{c}(t)}}}{\vek{e}}}\neq 1 \qquad \textnormal{oder}\qquad \norm{\ip{\frac{\dot{c}(t)}{\norm{\dot{c}(t)}}}{J(\vek{e})}}\neq 1. \] Sei \[  \norm{\ip{\frac{\dot{c}(t)}{\norm{\dot{c}(t)}}}{\vek{e}}}\neq 1, \] dann kann \[  \norm{\ip{\frac{\dot{c}(t)}{\norm{\dot{c}(t)}}}{J(\vek{e})}} \] in diesem Intervall nicht das Vorzeichen wechseln. Somit erfüllt 
+\begin{align}\label{Begingung1}
+\theta(t):=\operatorname{sgn}\ip{\frac{\dot{c}(t)}{\norm{\dot{c}(t)}}}{J(\vek{e})}\arccos\ip{\frac{\dot{c}(t)}{\norm{\dot{c}(t)}}}{\vek{e}}+2k\pi,\qquad k \in \mathbb{Z} 
+\end{align}die Bedingung \[\dot{c}(t)=\norm{\dot{c}(t)}\left(  \cos \theta(t)\vek{e}+\sin\theta(t)J(\vek{e}), \qquad t\in [a,b]  \right). \] Andererseits hat jede Funktion $\theta$, die obige Bedingung im betrachteten Intervall erfüllt, die Form \ref{Begingung1}.
 \end{proof}
 \begin{de}[Winkelfunktion]
 	Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve. Ein Funktion $\theta:[a,b]\to\R^2$ mit der Eigenschaft \[  \dot{c}(t)=\norm{\dot{c}(t)}\left(  \cos \theta(t)\vek{e}+\sin\theta(t)J(\vek{e}), \qquad t\in [a,b]  \right) \]
@@ -376,7 +381,7 @@ Wir untersuchen zunächst Kurven im $\R^2$. Kurven, deren Bild in einer Ebene li
 	\[|\kappa(t)|=\norm{\ddot{c}(t)}\] für $t\in[a,b]$.
 \end{lem}
 \begin{proof}
-
+	
 \end{proof}
 \begin{lem}
 Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve in Komponentenschreibweise $c(t)=(x(t),y(t))$ und $s:[a,b]\to\R$ die Bogenlänge auf $c$. Dann gilt
