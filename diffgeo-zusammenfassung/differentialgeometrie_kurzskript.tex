@@ -357,8 +357,7 @@ Dieser Satz lässt sich einfacherer verallgemeinern. Das Gebietsintegral entspri
 \chapter{Lokale Kurventheorie}
 Wir untersuchen zunächst Kurven im $\R^2$. Kurven, deren Bild in einer Ebene liegt, werden auch \textit{planar} genannt. Der Winkel zwischen dem Tangentialeinheitsvektor und einem fixen Einheitsvektor definiert eine \textit{Winkelfunktion}.
 \begin{lem}
-	Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve und $\vek{e}$ ein Einheitsvektor des $\R^2$. Dann gibt es eine $C^1$-Funktion $\theta:[a,b]\to \R$, derart, dass \[  \dot{c}(t)=\norm{\dot{c}(t)}\left(  \cos \theta(t)\vek{e}+\sin\theta(t)J(\vek{e}), \qquad t\in [a,b]  \right) \]
-	
+	Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve und $\vek{e}$ ein Einheitsvektor des $\R^2$. Dann gibt es eine $C^1$-Funktion $\theta:[a,b]\to \R$, derart, dass \[  \dot{c}(t)=\norm{\dot{c}(t)}\left(  \cos \theta(t)\vek{e}+\sin\theta(t)J(\vek{e}), \qquad t\in [a,b]  \right) \]	
 \end{lem}
 \begin{proof}
 	content...
@@ -367,6 +366,14 @@ Wir untersuchen zunächst Kurven im $\R^2$. Kurven, deren Bild in einer Ebene li
 	Sei $c:[a,b]\to \R^2$ eine reguläre $C^2$-Kurve. Ein Funktion $\theta:[a,b]\to\R^2$ mit der Eigenschaft \[  \dot{c}(t)=\norm{\dot{c}(t)}\left(  \cos \theta(t)\vek{e}+\sin\theta(t)J(\vek{e}), \qquad t\in [a,b]  \right) \]
 	für ein festes $\vek{e}\in\R^2$ heißt \textit{Winkelfunktion}.
 \end{de}
+\begin{de}[Krümmung einer planaren Kurve]
+	Sei $c:[a,b]\to \R^2$ eine reguläre $C^1$-Kurve und nach Bogenlänge parametrisiert. Für $t_1,t_2\in[a,b]$ mit $t_1<t_2$, ist \[ \frac{\theta(t_2)-\theta(t_1)}{t_2-t_1} \] die \textit{mittlere Krümmung von $c$ auf $[t_1,t_2]$}. Die \textit{Krümmung von $c$ im Punkt $c(t)$} ist dann gegeben durch \[ \kappa(t):=\lim_{h\to \infty} \frac{\theta(t+h)-\theta(t)}{h}=\dot{\theta}(t). \]  
+\end{de}
+\begin{lem}
+	Sei $c:[a,b]\to \R^2$ eine nach Bogenlänge parametrisierte reguläre $C^2$-Kurve. Dann gilt
+	\[ \kappa(t)=\ip{\ddot{c}(t)}{J(\dot{c}(t))} \] und insbesondere 
+	\[|\kappa(t)|=\norm{\ddot{c}(t)}\] für $t\in[a,b]$.
+\end{lem}
 
 
 
